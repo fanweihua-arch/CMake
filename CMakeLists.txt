@@ -6,6 +6,10 @@ project(CMakeProject VERSION 1.0 DESCRIPTION "这是一个CMake的练习项目" 
 # 其中目标名称CMakeTest也是cmake的target目标，
 # 设置变量值
 set(CMAKE_SRC_DIR ".")
+set(CMAKE_PREFIX_PATH "${CMAKE_SRC_DIR}/cmake")
+#设置目标文件的输出目录为bin目录
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SRC_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SRC_DIR}/lib)
 add_executable(CMakeTest main.cpp)
 # 生成一个库文件,其中STATIC/SGARED标识需要生成的库为静态库还是动态库
 # 当未显示指定时，系统会使用BUILD_SHARED_LIBS的值来选择构建
@@ -16,8 +20,9 @@ add_library(CMakeTestLib SHARED ${CMAKE_SRC_DIR}/CMakeTestLib/function.cpp ${CMA
 # 任何链接到这个目标的目标也必须包含这个目录，可选还有PRIVATE,这个只影响当前
 # 目标，不影响依赖，以及INTERFACE只影响依赖
 target_include_directories(CMakeTest PUBLIC ${CMAKE_SRC_DIR}/CMakeTestLib)
+target_include_directories(CMakeTest PUBLIC ${CMAKE_SRC_DIR}/spdlog/include)
 # 指定目标需要链接的库，一般PUBLIC关键字可以省略，但是不能有的省略，有的不省略，这样CMake会报错
-target_link_libraries(CMakeTest PUBLIC CMakeTestLib)
+message(STATUS "cuttrnt path is ${.}")
 # 指定编译器特性，当前指定使用c++11标准
 target_compile_features(CMakeTest PUBLIC cxx_std_11)
 # 在CMake中指定变量，变量名通常全部使用大写，变量值跟在其后，可以使用${}来解析变量
@@ -61,5 +66,8 @@ endfunction()
 # 复制到另一个文件中，并替换其中他找到的所有CMake变量
 # CMake中通常包含一个cmake文件夹，文件夹下存放.cmake的辅助文件，一般是用来查找一些库文件或者
 # 其他辅助文件，使用如下函数将这些模块加入到CMake中
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+# 查找spdlog库文件
+find_package(spdlog CONFIG REQUIRED)
 
+target_link_libraries(CMakeTest PUBLIC CMakeTestLib  /home/detc/CMake/build/spdlog/bin/spdlog)
