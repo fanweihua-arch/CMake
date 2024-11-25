@@ -1,5 +1,5 @@
 # 当前工程构建需要的cmake最小版本号
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.20)
 # 声明当前工程的工程名，版本号，工程描述文件，以及语言
 project(CMakeProject VERSION 1.0 DESCRIPTION "这是一个CMake的练习项目" LANGUAGES CXX)
 # 生成一个可执行文件，使用main.cpp文件，当有多个文件时，也可以使用变量等的方式
@@ -69,5 +69,46 @@ endfunction()
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 # 查找spdlog库文件
 find_package(spdlog CONFIG REQUIRED)
+#
+#
+#
+#
+#
+#
+#
+message(STATUS "#####################################################CMAKE 内置变量######################################################################")
+
+
+message(STATUS
+    "Source directory: ${CMAKE_SOURCE_DIR}\n"
+    "Binary directory: ${CMAKE_BINARY_DIR}\n"
+    "Current source directory: ${CMAKE_CURRENT_SOURCE_DIR}\n"
+    "Current binary directory: ${CMAKE_CURRENT_BINARY_DIR}\n"
+    "Module search path: ${CMAKE_MODULE_PATH}\n"
+    "Install prefix: ${CMAKE_INSTALL_PREFIX}\n"
+    "C++ Compiler: ${CMAKE_CXX_COMPILER}\n"
+    "C Compiler: ${CMAKE_C_COMPILER}\n"
+    "System name: ${CMAKE_SYSTEM_NAME}\n"
+    "Processor: ${CMAKE_SYSTEM_PROCESSOR}\n"
+    "System version: ${CMAKE_SYSTEM_VERSION}\n"
+    "Build type: ${CMAKE_BUILD_TYPE}\n"
+    "Configuration types: ${CMAKE_CONFIGURATION_TYPES}\n"
+    "Project name: ${CMAKE_PROJECT_NAME}\n"
+    "Project binary directory: ${CMAKE_PROJECT_BINARY_DIR}\n"
+    "OSX architectures: ${CMAKE_OSX_ARCHITECTURES}\n"
+    "Verbose makefile: ${CMAKE_VERBOSE_MAKEFILE}\n"
+    "CXX Flags: ${CMAKE_CXX_FLAGS}\n"
+    "Executable linker flags: ${CMAKE_EXE_LINKER_FLAGS}\n"
+    "Shared linker flags: ${CMAKE_SHARED_LINKER_FLAGS}\n"
+    "Module linker flags: ${CMAKE_MODULE_LINKER_FLAGS}\n"
+    "Cache file directory: ${CMAKE_CACHEFILE_DIR}\n"
+    "CMake version: ${CMAKE_VERSION}\n"
+    "Export compile commands: ${CMAKE_EXPORT_COMPILE_COMMANDS}")
+
+
+message(STATUS "#####################################################CMAKE 内置变量######################################################################")
+
+
+>>>>>>> b188cc5b9ee484d7b28170cd4ad9823aa5efe27d
 
 target_link_libraries(CMakeTest PUBLIC CMakeTestLib  /home/detc/CMake/build/spdlog/bin/spdlog)
