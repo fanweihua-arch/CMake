@@ -4,11 +4,13 @@ cmake_minimum_required(VERSION 3.12)
 project(CMakeProject VERSION 1.0 DESCRIPTION "这是一个CMake的练习项目" LANGUAGES CXX)
 # 生成一个可执行文件，使用main.cpp文件，当有多个文件时，也可以使用变量等的方式
 # 其中目标名称CMakeTest也是cmake的target目标，
+# 设置变量值
+set(CMAKE_SRC_DIR ".")
 add_executable(CMakeTest main.cpp)
 # 生成一个库文件,其中STATIC/SGARED标识需要生成的库为静态库还是动态库
 # 当未显示指定时，系统会使用BUILD_SHARED_LIBS的值来选择构建
 # add_library(CMakeTestLib STATIC/SHARED function.cpp)
-add_library(CMakeTestLib SHARED ${CMAKE_SRC_DIR}/CMakeTestLib/function.cpp function.h)
+add_library(CMakeTestLib SHARED ${CMAKE_SRC_DIR}/CMakeTestLib/function.cpp ${CMAKE_SRC_DIR}/CMakeTestLib/function.h)
 # 为目标文件添加一个头文件路径
 # PUBLIC标识符对于一个二进制目标没有什么含义，但是对于库来说，它让CMake知道
 # 任何链接到这个目标的目标也必须包含这个目录，可选还有PRIVATE,这个只影响当前
