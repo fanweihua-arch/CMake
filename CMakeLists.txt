@@ -34,7 +34,7 @@ set(ENV{variable_name} value)
 # 设置目标构建使用C++17 标准
 set_property(TARGET CMakeTest PROPERTY CXX_STANDARD 17)
 # 获取目标的已知属性,以下是为获取某个target的CXX标准属性，值存在result_variable中
-get_property(result_variable TARGET target_name PROPERTY CXX_STANDARD)
+get_property(result_variable TARGET CMakeTest PROPERTY CXX_STANDARD)
 # CMake中使用if语句的简单示例，在现代CMake中if语句中变量的解析可以用${}来解析变量或者不使用${}
 # 直接使用变量的方式,if语句中也支持一些其他关键字，例如
 # 一元的: NOT TARGET EXISTS(文件) DEFINED等
