@@ -68,9 +68,13 @@ endfunction()
 # 其他辅助文件，使用如下函数将这些模块加入到CMake中
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 # 查找spdlog库文件
-find_package(spdlog CONFIG REQUIRED)
-#
-#
+#find_package(spdlog CONFIG REQUIRED)
+# CMake中查找文件，一般分为两种，一种是使用file函数，一种是使用aux_source_directory()
+# 例如要查找某个文件夹下的所有的.h文件，可以写成如下形式
+file(GLOB SRC ${CMAKE_CURRENT_SOURCE_DIR}/CMakeTestLib/*.h)
+message(STATUS "USE FILE CHECK SRC VALUE IS: ${SRC}")
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} HEADER)
+message(STATUS "USE AUX_SOURCE_DIRECTORY HEADER VALUE IS:${HEADER}")
 #
 #
 #
@@ -109,6 +113,4 @@ message(STATUS
 message(STATUS "#####################################################CMAKE 内置变量######################################################################")
 
 
->>>>>>> b188cc5b9ee484d7b28170cd4ad9823aa5efe27d
-
-target_link_libraries(CMakeTest PUBLIC CMakeTestLib  /home/detc/CMake/build/spdlog/bin/spdlog)
+#target_link_libraries(CMakeTest PUBLIC CMakeTestLib  /home/detc/CMake/build/spdlog/bin/spdlog)
